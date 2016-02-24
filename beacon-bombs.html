@@ -11,14 +11,27 @@
     <h1>Beacon Bombs</h1>
     <h5>Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel!</h5>
     {{#momentum plugin="fade"}}
-      {{#if currentBomb}}
-        {{> bomb currentBomb}}
+      {{#if gameRunning}}
+        {{> bomb bombData}}
       {{else}}
-        <button rel="ok">Ok, let's go!</button>
+        {{> splash currentBomb}}
       {{/if}}
     {{/momentum}}
   </div>
   {{> timer}}
+</template>
+
+<template name="splash">
+  {{#if goodGame}}
+    Yo! You win!
+  {{/if}}
+  {{#if gameOver}}
+    Game over.
+  {{/if}}
+  {{#if (or goodGame gameOver)}}
+    Want to play again ?
+  {{/if}}
+  <button rel="ok">Ok, let's go!</button>
 </template>
 
 <template name="bomb">
