@@ -7,10 +7,12 @@
 </body>
 
 <template name="layout">
-  <h1>Beacon Bombs</h1>
-  <h2>10 mins to difuse all 4 bombs, in sequence, to save the Hostel!</h2>
-
-  {{> bomb currentBomb}}
+  <div class="container">
+    <h1>Beacon Bombs</h1>
+    <h5>Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel!</h5>
+    {{> bomb currentBomb}}
+  </div>
+  {{> timer}}
 </template>
 
 <template name="bomb">
@@ -25,16 +27,13 @@
   <div>
     <form>
       <input type="text" rel="password" placeholder="Bomb code" />
-      <button rel="submit-password">Desamorce</button>
+      <button rel="submit-password">Diffuse</button>
     </form>
   </div>
 
 </template>
 
 <template name="radar">
-  <p>The Beacon Location Radar goes here</p>
-</template>
-
-<template name="timer">
-  <strong>{{getCountdown}}</strong> seconds left!
+  <div class="radar">
+  </div>
 </template>
