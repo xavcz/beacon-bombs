@@ -3,30 +3,26 @@
 </head>
 
 <body>
-  <h1>Beacon Bombs</h1>
-  <h2>10 mins to difuse all 4 bombs, in sequence, to save the Hostel!</h2>
-
-  {{> radar}}
+  <div class="container">
+    <h1>Beacon Bombs</h1>
+    <h5>Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel!</h5>
+    {{> radar}}
+    {{> table}}
+  </div>
   {{> timer}}
-  {{> table}}
 </body>
 
 <template name="radar">
   <p>The Beacon Location Radar goes here</p>
 </template>
 
-<template name="timer">
-  <big>{{getCountdown}}</big> seconds left!
-</template>
-
 <template name="table">
-  <table class="bombs table table-striped">
+  <table class="table centered">
     <thead>
       <th>Bomb</th>
       <th>Status</th>
       <th>Icon</th>
     </thead>
-
     <tbody>
       {{#each bomb}}
         {{> bomb}}
