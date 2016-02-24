@@ -21,7 +21,7 @@ if (Meteor.isClient) {
       identifier: 'Second bomb',
       hint: 'Somewhere by there',
       password: 'cat'
-    }
+    },
     {
       _id: 4,
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF48624A8E7',
@@ -57,7 +57,10 @@ if (Meteor.isClient) {
         countdown.add(300);
         Session.set('currentBomb', Session.get('currentBomb') + 1);
       } else {
-        // XXX handle error
+        console.log('fail');
+        // remove time but still get to the next bomb
+        countdown.remove(300);
+        Session.set('currentBomb', Session.get('currentBomb') + 1);
       }
     }
   });
