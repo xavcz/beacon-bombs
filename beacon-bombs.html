@@ -1,14 +1,24 @@
 <head>
-  <title>beacon-bombs</title>
+  <title>Beacon Bombs</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>Beacon Bombs</h1>
+  <h2>10 mins to difuse all 4 bombs, in sequence, to save the Hostel!</h2>
 
-  {{> hello}}
+  {{> radar}}
+  {{> timer}}
+  {{> table}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="radar">
+  <p>The Beacon Location Radar goes here</p>
+</template>
+
+<template name="timer">
+  <p>The Countdown timer goes here</p>
+</template>
+
+<template name="table">
+  <p>The Bomb's remaining game status table goes here</p>
 </template>
