@@ -1,7 +1,12 @@
- Template.helloWorld.events({
-    'click button': function () {
-      alert('Say hello to the bombs!')
-    }
-  });
+if (Meteor.isClient) {
+	Template.beaconTest.helpers({
+		'click button': function () {
+			alert('testng');
+		}
+	});
+}
+
+
+
 
 
