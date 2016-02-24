@@ -6,14 +6,14 @@ if (Meteor.isClient) {
       uuid: 'ABCD-1234',
       identifier: 'First bomb',
       hint: 'In your shoe',
-      password: 'pipo'
+      code: 'pipo'
     },
     {
       _id: 2,
       uuid: 'EFGH-5678',
       identifier: 'Second bomb',
       hint: 'Somewhere by there',
-      password: 'hophop'
+      code: 'hophop'
     }
   ];
 
@@ -24,24 +24,49 @@ if (Meteor.isClient) {
   });
 
   Template.layout.onCreated(function () {
-    Session.set('currentBomb', 1);
+    Session.set('currentBomb', 0);
   });
 
   Template.layout.helpers({
+    gameStarted () {
+      return Session.get('currentBomb');
+    },
     currentBomb () {
       return beacons[Session.get('currentBomb') - 1];
     }
   });
 
+  Template.layout.events({
+    'click [rel=ok]' (event, instance) {
+      Session.set('currentBomb', 1);
+    }
+  });
+
+  Template.bomb.onCreated(function () {
+    // init
+    this.nextBomb = new ReactiveVar(Session.get('currentBomb') + 1);
+
+    this.autorun(() => {
+      if (this.nextBomb.get() === Session.get('currentBomb')) {
+        $('.bomb').velocity('fadeIn');
+        this.nextBomb.set(this.nextBomb.get() + 1);
+      }
+    });
+  });
+
   Template.bomb.events({
-    'submit form' (event, template) {
+    'submit form' (event, instance) {
       event.preventDefault();
 
-      if (event.target[0].value === template.data.password) {
+      // compare the input 'code' to the data context (ie. the current bomb)
+      if (event.target[0].value === instance.data.code) {
         console.log('success');
         // add time and get to the next bomb
         countdown.add(300);
-        Session.set('currentBomb', Session.get('currentBomb') + 1);
+        $('.bomb').velocity('fadeOut');
+        Meteor.setTimeout(() => {
+          Session.set('currentBomb', Session.get('currentBomb') + 1);
+        }, 500);
       } else {
         // XXX handle error
       }
