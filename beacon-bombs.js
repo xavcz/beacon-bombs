@@ -1,16 +1,18 @@
-if (Meteor.isCordova) {
-  Meteor.startup(() =>  {
-    const reactiveBeaconRegion = new ReactiveBeaconRegion({identifier: "door beacon", uuid: "D0D3FA86-CA76-45EC-9BD9-6AF47CFFF8B8"});
-
-    console.log(reactiveBeaconRegion.getBeaconRegion());
-  });
-}
-
 if (Meteor.isClient) {
+  Template.hello.onCreated(function () {
+    let reactiveBeaconRegion;
+    if (Meteor.isCordova) {
+      reactiveBeaconRegion = new ReactiveBeaconRegion({
+        identifier: "door beacon",
+        uuid: "D0D3FA86-CA76-45EC-9BD9-6AF47CFFF8B8"
+      });
 
-  Template.hello.helpers({
-    result () {
-      return reactiveBeaconRegion.getBeaconRegion();
+      Tracker.autorun(() => {
+        console.log(reactiveBeaconRegion.getBeaconRegion());
+        if (reactiveBeaconRegion.getBeaconRegion().inRegion) {
+          alert('yeah!')
+        }
+      });
     }
   });
 
@@ -21,3 +23,4 @@ if (Meteor.isClient) {
     }
   });
 }
+
