@@ -17,6 +17,12 @@ if (Meteor.isClient) {
     }
   ];
 
+  let countdown = new ReactiveCountdown(600);
+
+  countdown.start(function() {
+    // XXX do something when this is completed
+  });
+
   Template.layout.onCreated(function () {
     Session.set('currentBomb', 1);
   });
@@ -33,17 +39,13 @@ if (Meteor.isClient) {
 
       if (event.target[0].value === template.data.password) {
         console.log('success');
+        // add time and get to the next bomb
+        countdown.add(300);
         Session.set('currentBomb', Session.get('currentBomb') + 1);
       } else {
         // XXX handle error
       }
     }
-  });
-
-  var countdown = new ReactiveCountdown(600);
-
-  countdown.start(function() {
-      // XXX do something when this is completed
   });
 
   Template.timer.helpers({
