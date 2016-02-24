@@ -103,7 +103,10 @@ if (Meteor.isClient) {
           Session.set('currentBomb', Session.get('currentBomb') + 1);
         }, 500);
       } else {
-        // XXX handle error
+        console.log('fail');
+        // remove time but still get to the next bomb
+        countdown.remove(300);
+        Session.set('currentBomb', Session.get('currentBomb') + 1);
       }
     }
   });
