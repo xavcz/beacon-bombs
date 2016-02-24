@@ -20,5 +20,25 @@
 </template>
 
 <template name="table">
-  <p>The Bomb's remaining game status table goes here</p>
+  <table class="bombs table table-striped">
+    <thead>
+      <th>Bomb</th>
+      <th>Status</th>
+      <th>Icon</th>
+    </thead>
+
+    <tbody>
+      {{#each bomb}}
+        {{> bomb}}
+      {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name="bomb">
+  <tr class="bomb">
+    <td class="name">{{bombId}}</td>
+    <td class="cookies">{{bombStatus}}</td>
+    <td class="items">{{bombIcon}}</td>
+  </tr>
 </template>
