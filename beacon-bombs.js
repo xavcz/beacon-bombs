@@ -3,17 +3,31 @@ if (Meteor.isClient) {
   const beacons = [
     {
       _id: 1,
-      uuid: 'ABCD-1234',
+      uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
       identifier: 'First bomb',
       hint: 'In your shoe',
       password: 'pipo'
     },
     {
       _id: 2,
-      uuid: 'EFGH-5678',
+      uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF4FB75CA9A',
       identifier: 'Second bomb',
       hint: 'Somewhere by there',
       password: 'hophop'
+    },
+    {
+      _id: 3,
+      uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF47CFFF8B8',
+      identifier: 'Second bomb',
+      hint: 'Somewhere by there',
+      password: 'cat'
+    }
+    {
+      _id: 4,
+      uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF48624A8E7',
+      identifier: 'Second bomb',
+      hint: 'Somewhere by there',
+      password: 'fish'
     }
   ];
 
