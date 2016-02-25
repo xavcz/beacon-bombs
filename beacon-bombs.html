@@ -10,27 +10,42 @@
   <div class="container">
     <h1>Beacon Bombs</h1>
     <h5>Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel!</h5>
-    {{> bomb currentBomb}}
+    {{#momentum plugin="fade"}}
+      {{#if gameRunning}}
+        {{> bomb bombData}}
+      {{else}}
+        {{> splash currentBomb}}
+      {{/if}}
+    {{/momentum}}
   </div>
   {{> timer}}
 </template>
 
+<template name="splash">
+  {{#if goodGame}}
+    Yo! You win!
+  {{/if}}
+  {{#if gameOver}}
+    Game over.
+  {{/if}}
+  {{#if (or goodGame gameOver)}}
+    Want to play again ?
+  {{/if}}
+  <button rel="ok">Ok, let's go!</button>
+</template>
+
 <template name="bomb">
-
-  <h2>Bomb n°{{_id}} - {{identifier}}</h2>
-  <p>{{> timer}}</p>
-
-  {{> radar}}
-
-  <p><strong>Hint:</strong> {{hint}}</p>
-
-  <div>
-    <form>
-      <input type="text" rel="password" placeholder="Bomb code" />
-      <button rel="submit-password">Diffuse</button>
-    </form>
+  <div class="bomb">
+    <h2>Bomb n°{{_id}} - {{identifier}}</h2>
+    {{> radar}}
+    <div>
+      <form>
+        <input type="text" rel="code" placeholder="Bomb code" />
+        <button rel="submit-code">Diffuse</button>
+      </form>
+      <p><strong>Hint:</strong> {{hint}}</p>
+    </div>
   </div>
-
 </template>
 
 <template name="radar">

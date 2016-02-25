@@ -6,56 +6,102 @@ if (Meteor.isClient) {
       uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
       identifier: 'First bomb',
       hint: 'In your shoe',
-      password: 'pipo'
+      code: 'pipo'
     },
     {
       _id: 2,
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF4FB75CA9A',
       identifier: 'Second bomb',
       hint: 'Somewhere by there',
-      password: 'hophop'
+      code: 'hophop'
     },
     {
       _id: 3,
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF47CFFF8B8',
-      identifier: 'Second bomb',
-      hint: 'Somewhere by there',
-      password: 'cat'
+      identifier: 'Third bomb',
+      hint: 'Miaou',
+      code: 'cat'
     },
     {
       _id: 4,
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF48624A8E7',
-      identifier: 'Second bomb',
-      hint: 'Somewhere by there',
-      password: 'fish'
+      identifier: 'Ultimate bomb',
+      hint: 'WoOoOoOo!!',
+      code: 'fish'
     }
   ];
 
-  let countdown = new ReactiveCountdown(600);
+  let countdown = new ReactiveCountdown(10);
 
-  countdown.start(function() {
-    // XXX do something when this is completed
+  countdown.start();
+
+  Template.registerHelper('or', (a, b) => {
+    return a || b;
   });
 
   Template.layout.onCreated(function () {
-    Session.set('currentBomb', 1);
+    Session.set('currentBomb', 0);
   });
 
   Template.layout.helpers({
-    currentBomb () {
+    gameRunning () {
+      const currentBomb = Session.get('currentBomb');
+      return currentBomb > 0 && currentBomb <= beacons.length;
+    },
+    bombData () {
       return beacons[Session.get('currentBomb') - 1];
+    },
+    currentBomb () {
+      return Session.get('currentBomb');
     }
   });
 
+  Template.layout.events({
+    'click [rel=ok]' (event, instance) {
+      Session.set('currentBomb', 1);
+      console.log('game started');
+    }
+  });
+
+  Template.splash.helpers({
+    gameOver () {
+      return !countdown.get();
+    },
+    goodGame () {
+      return Session.get('currentBomb') > beacons.length;
+    }
+  });
+
+
+	/***
+   * MONKEY PATCH "percolate:momentum"
+   * Lack of consistency below
+   ***/
+  Template.bomb.onCreated(function () {
+    // init a next bomb value attached to the bomb template
+    this.nextBomb = new ReactiveVar(Session.get('currentBomb') + 1);
+
+    this.autorun(() => {
+      if (this.nextBomb.get() === Session.get('currentBomb')) {
+        $('.bomb').velocity('fadeIn');
+        this.nextBomb.set(this.nextBomb.get() + 1);
+      }
+    });
+  });
+
   Template.bomb.events({
-    'submit form' (event, template) {
+    'submit form' (event, instance) {
       event.preventDefault();
 
-      if (event.target[0].value === template.data.password) {
-        console.log('success');
+      // compare the input 'code' to the data context (ie. the current bomb)
+      if (event.target[0].value === instance.data.code) {
+        console.log('success, next bomb');
         // add time and get to the next bomb
         countdown.add(300);
-        Session.set('currentBomb', Session.get('currentBomb') + 1);
+        $('.bomb').velocity('fadeOut');
+        Meteor.setTimeout(() => {
+          Session.set('currentBomb', Session.get('currentBomb') + 1);
+        }, 500);
       } else {
         console.log('fail');
       if (countdown.get >= 301 {

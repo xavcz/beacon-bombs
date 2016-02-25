@@ -14,7 +14,7 @@ p {
 
 .radar{
 	margin: auto;
-	position: center;
+    display: block;
     width:80px;
     height:80px;
     border-radius:50%;
