@@ -1,5 +1,4 @@
 if (Meteor.isClient) {
-
   const beacons = [
     {
       _id: 1,
