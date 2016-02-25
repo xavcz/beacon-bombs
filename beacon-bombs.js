@@ -58,16 +58,23 @@ if (Meteor.isClient) {
         Session.set('currentBomb', Session.get('currentBomb') + 1);
       } else {
         console.log('fail');
+      if (countdown.get >= 301 {
         // remove time but still get to the next bomb
         countdown.remove(300);
         Session.set('currentBomb', Session.get('currentBomb') + 1);
+      } else {
+        return gameOver
       }
-    }
   });
 
   Template.timer.helpers({
     getCountdown: function() {
       return countdown.get();
+    },
+    gameOver: function() {
+      return countdown.completed();
+      // Open Modal via gameover.html
+      // modal.style.display = "none";
     }
   });
 
