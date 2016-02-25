@@ -33,16 +33,13 @@ if (Meteor.isClient) {
 
   let countdown = new ReactiveCountdown(600);
 
-  countdown.start(() => {
-    Session.set('currentBomb', 'game-over');
-  });
-
   Template.registerHelper('or', (a, b) => {
     return a || b;
   });
 
   Template.layout.onCreated(function () {
-    Session.setDefault('currentBomb', 0);
+    Session.setDefault('currentBomb', 0) 
+
   });
 
   Template.layout.helpers({
@@ -62,12 +59,13 @@ if (Meteor.isClient) {
     'click [rel=ok]' (event, instance) {
       Session.set('currentBomb', 1);
       console.log('game started');
+      countdown.start();
     }
   });
 
   Template.splash.helpers({
     gameOver () {
-      return !countdown.get() || Session.get('currentBomb', 'game-over');
+      return Session.get('currentBomb', 'game-over');
     },
     goodGame () {
       return Session.get('currentBomb') > beacons.length;
@@ -75,7 +73,7 @@ if (Meteor.isClient) {
   });
 
 
-	/***
+  /***
    * MONKEY PATCH "percolate:momentum"
    * Lack of consistency below
    ***/
@@ -110,6 +108,13 @@ if (Meteor.isClient) {
         countdown.remove(300);
       }
     }
+  });
+
+  Template.timer.onCreated(function () {
+    countdown.start(() => {
+      debugger
+      Session.set('currentBomb', 'game-over');
+    });
   });
 
   Template.timer.helpers({
