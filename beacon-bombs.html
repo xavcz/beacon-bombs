@@ -12,32 +12,30 @@
 </body>
 
 <template name="layout">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Beacon Bombs</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <p class="centerText"><strong>Instructions:</strong></p>
+      Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel! Solve the riddle to find the location of each bomb. Enter the password you find on the bomb. Beware: the wrong password decreases the time on the remaining bombs!
+    </div>
+  </div>
+  <div class="row">
+    {{#momentum plugin="fade"}}
+      {{#if gameRunning}}
+        {{> bomb bombData}}
+      {{else}}
+        {{> splash currentBomb}}
+      {{/if}}
+    {{/momentum}}
+  </div>
 	<div class="row">
-		<div class="col-xs-12">
-			<h1>Beacon Bombs</h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<p class="centerText"><strong>Instructions:</strong></p>
-			Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel! Solve the riddle to find the location of each bomb. Enter the password you find on the bomb. Beware: the wrong password decreases the time on the remaining bombs!
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			{{#momentum plugin="fade"}}
-				{{#if gameRunning}}
-					{{> bomb bombData}}
-				{{else}}
-					{{> splash currentBomb}}
-				{{/if}}
-			{{/momentum}}
-		</div>
-	</div>
-	<div class="row">
-	{{#if gameRunning}}
-		{{> timer}}
-	{{/if}}
+    {{#if gameRunning}}
+      {{> timer}}
+    {{/if}}
 	</div>
 </template>
 
@@ -71,10 +69,9 @@
 
 <template name="bomb">
   <div class="bomb">
-    <h3>Bomb n°{{_id}}</h3>
+    <h3><img src="bomb.svg"/> n°{{_id}}</h3>
 	  <p>Riddle me this...</p>
 	  <p>{{riddle}}</p>
-    <!--{{> radar}}-->
     <div>
 	    <div class="row">
 		    <form class="centerText">
@@ -97,12 +94,6 @@
 		    {{/if}}
 	    </div>
     </div>
-  </div>
-</template>
-
-<template name="radar">
-  <div class="row radar centerText">
-	  <img src="bomb.png"/>
   </div>
 </template>
 
