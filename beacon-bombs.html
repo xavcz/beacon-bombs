@@ -18,7 +18,9 @@
       {{/if}}
     {{/momentum}}
   </div>
-  {{> timer}}
+  {{#if gameRunning}}
+    {{> timer}}
+  {{/if}}
 </template>
 
 <template name="splash">
