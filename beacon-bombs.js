@@ -4,29 +4,41 @@ if (Meteor.isClient) {
       _id: 1,
       uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
       identifier: 'First bomb',
-      hint: 'In your shoe',
-      code: 'Pipo'
+      hint: 'Think alphabet, but with numbers',
+      code: 'Mirror',
+			riddle: '2-1-20-8-18-15-15-13 '
     },
     {
       _id: 2,
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF4FB75CA9A',
       identifier: 'Second bomb',
-      hint: 'Somewhere by there',
-      code: 'Hophop'
+			hint: 'We have all enjoyed this device on the sunday.',
+			code: 'Pizza',
+			riddle: 'Coal in my belly, steel on my feet. When I get hot, it is time to eat.'
+
     },
     {
       _id: 3,
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF47CFFF8B8',
       identifier: 'Third bomb',
-      hint: 'Miaou',
-      code: 'Cat'
+			hint: 'My hotelroom is dirty. I am going to the ... to complain.',
+			code: 'Reception',
+			riddle: 'There’s a place nearby you’ll want to meet -' +
+			' A portal place where people greet - ' +
+			' Find me at the gatekeeper’s home - ' +
+			' Search this area with a fine toothed comb'
     },
     {
       _id: 4,
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF48624A8E7',
       identifier: 'Ultimate bomb',
-      hint: 'WoOoOoOo!!',
-      code: 'Fish'
+			hint: 'Big hulky, strolling down the hallways somewhere...',
+			code: 'Dan',
+			riddle: 'He’s tallest, not smallest, ' +
+			'British, nor fast, '+
+			'in his pocket you’ll find, '+
+			'survival at last. '
+
     }
   ];
 

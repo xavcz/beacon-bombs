@@ -19,7 +19,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<p class="centerText"><strong>Instructions:</strong></p>
-			Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel! Each bomb requires a password to diffuse. Beware: the wrong password decreases the time on the remaining bombs!
+			Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel! Solve the riddle to find the location of each bomb. Enter the password you find on the bomb. Beware: the wrong password decreases the time on the remaining bombs!
 		</div>
 	</div>
 	<div class="row">
@@ -70,8 +70,10 @@
 
 <template name="bomb">
   <div class="bomb">
-    <h3>Bomb n°{{_id}} - {{identifier}}</h3>
-    {{> radar}}
+    <h3>Bomb n°{{_id}}</h3>
+	  <p>Riddle me this...</p>
+	  <p>{{riddle}}</p>
+    <!--{{> radar}}-->
     <div>
 	    <div class="row">
 		    <form class="centerText">
