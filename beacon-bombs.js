@@ -65,7 +65,7 @@ if (Meteor.isClient) {
 
   Template.splash.helpers({
     gameOver () {
-      return Session.get('currentBomb', 'game-over');
+      return Session.get('currentBomb') === 'game-over';
     },
     goodGame () {
       return Session.get('currentBomb') > beacons.length;
@@ -112,7 +112,6 @@ if (Meteor.isClient) {
 
   Template.timer.onCreated(function () {
     countdown.start(() => {
-      debugger
       Session.set('currentBomb', 'game-over');
     });
   });
