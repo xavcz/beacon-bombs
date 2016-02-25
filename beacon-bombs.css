@@ -12,6 +12,7 @@ p {
 	text-align: center;
 }
 
+
 .radar{
 	margin: auto;
     display: block;
@@ -42,8 +43,8 @@ footer {
     font-size: 40px;
 }
 
-.btn:hover {
-
+.btn:active {
+    transform: scale(0.8, 0.8);
 }
 
 
