@@ -22,7 +22,7 @@ if (Meteor.isClient) {
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF47CFFF8B8',
       identifier: 'Third bomb',
 			hint: 'My hotelroom is dirty. I am going to the ... to complain.',
-			code: 'Reception',
+			code: 'Rioja',
 			riddle: 'There’s a place nearby you’ll want to meet -' +
 			' A portal place where people greet - ' +
 			' Find me at the gatekeeper’s home - ' +
@@ -33,7 +33,7 @@ if (Meteor.isClient) {
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF48624A8E7',
       identifier: 'Ultimate bomb',
 			hint: 'Big hulky, strolling down the hallways somewhere...',
-			code: 'Dan',
+			code: 'Beer',
 			riddle: 'He’s tallest, not smallest, ' +
 			'British, nor fast, '+
 			'in his pocket you’ll find, '+
