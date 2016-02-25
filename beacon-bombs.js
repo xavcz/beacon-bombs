@@ -5,7 +5,7 @@ if (Meteor.isClient) {
       uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
       identifier: 'First bomb',
       hint: 'Think alphabet, but with numbers',
-      code: 'Mirror',
+      code: 'MIRROR',
 			riddle: '2-1-20-8-18-15-15-13 '
     },
     {
@@ -13,7 +13,7 @@ if (Meteor.isClient) {
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF4FB75CA9A',
       identifier: 'Second bomb',
 			hint: 'We have all enjoyed this device on the sunday.',
-			code: 'Pizza',
+			code: 'PIZZA',
 			riddle: 'Coal in my belly, steel on my feet. When I get hot, it is time to eat.'
 
     },
@@ -22,7 +22,7 @@ if (Meteor.isClient) {
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF47CFFF8B8',
       identifier: 'Third bomb',
 			hint: 'My hotelroom is dirty. I am going to the ... to complain.',
-			code: 'Rioja',
+			code: 'RIOJA',
 			riddle: 'There’s a place nearby you’ll want to meet -' +
 			' A portal place where people greet - ' +
 			' Find me at the gatekeeper’s home - ' +
@@ -33,7 +33,7 @@ if (Meteor.isClient) {
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF48624A8E7',
       identifier: 'Ultimate bomb',
 			hint: 'Big hulky, strolling down the hallways somewhere...',
-			code: 'Beer',
+			code: 'BEER',
 			riddle: 'He’s tallest, not smallest, ' +
 			'British, nor fast, '+
 			'in his pocket you’ll find, '+
