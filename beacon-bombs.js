@@ -6,13 +6,13 @@ if (Meteor.isClient) {
       identifier: 'First bomb',
       hint: 'Think alphabet, but with numbers',
       code: 'MIRROR',
-			riddle: '2-1-20-8-18-15-15-13 '
+			riddle: '13-9-18-18-15-18'
     },
     {
       _id: 2,
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF4FB75CA9A',
       identifier: 'Second bomb',
-			hint: 'We have all enjoyed this device on the sunday.',
+			hint: 'We have all enjoyed this device on sunday.',
 			code: 'PIZZA',
 			riddle: 'Coal in my belly, steel on my feet. When I get hot, it is time to eat.'
 
@@ -21,7 +21,7 @@ if (Meteor.isClient) {
       _id: 3,
       uuid: 'D0D3FA86-CA76-45EC-9BD9-6AF47CFFF8B8',
       identifier: 'Third bomb',
-			hint: 'My hotelroom is dirty. I am going to the ... to complain.',
+			hint: 'I am going to the ... to complain.',
 			code: 'RIOJA',
 			riddle: 'There’s a place nearby you’ll want to meet -' +
 			' A portal place where people greet - ' +
@@ -134,12 +134,13 @@ if (Meteor.isClient) {
       event.preventDefault();
 
       // compare the input 'code' to the data context (ie. the current bomb)
-      if (event.target[0].value === instance.data.code) {
+
+      if (event.target[0].value.toUpperCase() === instance.data.code) {
         console.log('success, next bomb');
         sAlert.success('Success ! 🎉');
 				Session.set('getHint', false);
         // add time and get to the next bomb
-        countdown.add(300);
+        countdown.add(120);
         $('.bomb').velocity('fadeOut');
         Meteor.setTimeout(() => {
           event.target[0].value = '';

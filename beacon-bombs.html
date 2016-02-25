@@ -19,8 +19,10 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
+	    {{#unless gameRunning}}
       <p class="centerText"><strong>Instructions:</strong></p>
-      Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel! Solve the riddle to find the location of each bomb. Enter the password (all capital letters) you find on the bomb. Beware: the wrong password decreases the time on the remaining bombs!
+      Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel! Solve the riddle to find the location of each bomb. Enter the password you find on the bomb. Beware: the wrong password decreases the time on the remaining bombs!
+         {{/unless}}
     </div>
   </div>
   <div class="row">
@@ -44,7 +46,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				{{#if goodGame}}
-					Yo! You win!
+					<p class="animated flash infinite">You win!</p>
 				{{/if}}
 				{{#if gameOver}}
 					<p class="font animated flash infinite"><strong>Game over!</strong></p> <br/>
