@@ -128,7 +128,7 @@ if (Meteor.isClient) {
   Template.bomb.onCreated(function () {
     // init a next bomb value attached to the bomb template
     this.nextBomb = new ReactiveVar(Session.get('currentBomb') + 1);
-
+		Session.set('getHint', false);
     this.autorun(() => {
       if (this.nextBomb.get() === Session.get('currentBomb')) {
         $('.bomb').velocity('fadeIn');
@@ -145,6 +145,7 @@ if (Meteor.isClient) {
       if (event.target[0].value === instance.data.code) {
         console.log('success, next bomb');
         sAlert.success('Success ! 🎉');
+				Session.set('getHint', false);
         // add time and get to the next bomb
         countdown.add(300);
         $('.bomb').velocity('fadeOut');
@@ -157,8 +158,17 @@ if (Meteor.isClient) {
         countdown.remove(60);
         sAlert.error('Wrong code ! Beware, you have lost time 💣');
       }
-    }
+    },
+		'click [rel=show-hint]': function () {
+			Session.set('getHint', true);
+		}
   });
+
+	Template.bomb.helpers({
+		showHint () {
+			return Session.get('getHint');
+		}
+	});
 
   Template.timer.onCreated(function () {
     countdown.start(() => {

@@ -82,11 +82,20 @@
 				    <input class="input-lg centerText" type="text" rel="code" placeholder="KILLCODE" style="width: 50%"/>
 			    </div>
 			   <div class="row">
-				   <button class="btn btn-big" rel="submit-code">Diffuse</button>
+				   <button class="btn" rel="submit-code">Diffuse</button>
 			   </div>
 		    </form>
 	    </div>
-      <p><strong>Hint:</strong> {{hint}}</p>
+	    <div class="row centerText">
+		    {{#unless showHint}}
+			    <button class="" rel="show-hint">Show me a hint</button>
+		    {{/unless}}
+	    </div>
+	    <div class="row'">
+		    {{#if showHint}}
+			    <p><strong>Hint:</strong> {{hint}}</p>
+		    {{/if}}
+	    </div>
     </div>
   </div>
 </template>
