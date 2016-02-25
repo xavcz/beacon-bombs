@@ -12,37 +12,36 @@
 </body>
 
 <template name="layout">
+  <div class="col-xs-12">
+    {{#momentum plugin="fade"}}
+      {{#if gameRunning}}
+        {{> bomb bombData}}
+      {{else}}
+        {{> splash currentBomb}}
+      {{/if}}
+    {{/momentum}}
+  </div>
 	<div class="row">
-		<div class="col-xs-12">
-			<h1>Beacon Bombs</h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<p class="centerText"><strong>Instructions:</strong></p>
-			Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel! Solve the riddle to find the location of each bomb. Enter the password you find on the bomb. Beware: the wrong password decreases the time on the remaining bombs!
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			{{#momentum plugin="fade"}}
-				{{#if gameRunning}}
-					{{> bomb bombData}}
-				{{else}}
-					{{> splash currentBomb}}
-				{{/if}}
-			{{/momentum}}
-		</div>
-	</div>
-	<div class="row">
-	{{#if gameRunning}}
-		{{> timer}}
-	{{/if}}
+    {{#if gameRunning}}
+      {{> timer}}
+    {{/if}}
 	</div>
 </template>
 
 <template name="splash">
 	<div  class="centerText">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Beacon Bombs</h1>
+        <img src="bomberman.gif" title="bomberman"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="centerText"><strong>Instructions:</strong></p>
+        Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel! Each bomb requires a password to diffuse. Beware: the wrong password decreases the time on the remaining bombs!
+      </div>
+    </div>
 		<div class="row">
 			<div class="col-xs-12">
 				{{#if goodGame}}
@@ -93,7 +92,7 @@
 
 <template name="radar">
   <div class="row radar centerText">
-	  <img src="bomb.png"/>
+	  <img src="bomb.svg"/>
   </div>
 </template>
 
