@@ -12,6 +12,7 @@ p {
 	text-align: center;
 }
 
+
 .radar{
 	margin: auto;
     display: block;
@@ -33,5 +34,17 @@ footer {
     height:60px;   /* Height of the footer */
 }
 
+.centerText{
+    text-align: center;
+}
+
+.font{
+    font-family: 'Pacifico', cursive;
+    font-size: 40px;
+}
+
+.btn:active {
+    transform: scale(0.8, 0.8);
+}
 
 
