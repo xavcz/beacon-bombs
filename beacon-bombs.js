@@ -33,7 +33,9 @@ if (Meteor.isClient) {
 
   let countdown = new ReactiveCountdown(600);
 
-  countdown.start();
+  countdown.start(() => {
+    Session.set('currentBomb', 'game-over');
+  });
 
   Template.registerHelper('or', (a, b) => {
     return a || b;
@@ -106,9 +108,6 @@ if (Meteor.isClient) {
         console.log('fail');
         // remove time but still get to the next bomb
         countdown.remove(300);
-        if (countdown.get() < 0) {
-          Session.set('currentBomb', 'game-over');
-        }
       }
     }
   });
