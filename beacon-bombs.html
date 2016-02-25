@@ -11,20 +11,31 @@
 </body>
 
 <template name="layout">
-  <div class="container">
-    <h1>Beacon Bombs</h1>
-    <h5>Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel!</h5>
-    {{#momentum plugin="fade"}}
-      {{#if gameRunning}}
-        {{> bomb bombData}}
-      {{else}}
-        {{> splash currentBomb}}
-      {{/if}}
-    {{/momentum}}
-  </div>
-  {{#if gameRunning}}
-    {{> timer}}
-  {{/if}}
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Beacon Bombs</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<p class="centerText"><strong>Instructions:</strong></p>
+			Sequentially diffuse 4 bombs, in 10 mins, to save the Hostel! Each bomb requires a password to diffuse. Beware: the wrong password decreases the time on the remaining bombs!
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			{{#momentum plugin="fade"}}
+				{{#if gameRunning}}
+					{{> bomb bombData}}
+				{{else}}
+					{{> splash currentBomb}}
+				{{/if}}
+			{{/momentum}}
+		</div>
+	</div>
+	<div class="row">
+		{{> timer}}
+	</div>
 </template>
 
 <template name="splash">
@@ -57,27 +68,26 @@
 
 <template name="bomb">
   <div class="bomb">
-    <h2>Bomb n°{{_id}} - {{identifier}}</h2>
+    <h3>Bomb n°{{_id}} - {{identifier}}</h3>
     {{> radar}}
     <div>
 	    <div class="row">
 		    <form class="centerText">
 			    <div class="row">
-				    <input class="centerText" type="text" rel="code" placeholder="KILLCODE" style="width: 50%"/>
+				    <input class="input-lg centerText" type="text" rel="code" placeholder="KILLCODE" style="width: 50%"/>
 			    </div>
 			   <div class="row">
 				   <button class="btn btn-big" rel="submit-code">Diffuse</button>
 			   </div>
 		    </form>
 	    </div>
-
-
       <p><strong>Hint:</strong> {{hint}}</p>
     </div>
   </div>
 </template>
 
 <template name="radar">
-  <div class="radar">
+  <div class="row radar centerText">
+	  <img src="bomb.png"/>
   </div>
 </template>
