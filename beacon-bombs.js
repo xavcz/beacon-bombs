@@ -31,16 +31,18 @@ if (Meteor.isClient) {
     }
   ];
 
-  let countdown = new ReactiveCountdown(10);
+  let countdown = new ReactiveCountdown(600);
 
-  countdown.start();
+  countdown.start(() => {
+    Session.set('currentBomb', 'game-over');
+  });
 
   Template.registerHelper('or', (a, b) => {
     return a || b;
   });
 
   Template.layout.onCreated(function () {
-    Session.set('currentBomb', 0);
+    Session.setDefault('currentBomb', 0);
   });
 
   Template.layout.helpers({
@@ -65,7 +67,7 @@ if (Meteor.isClient) {
 
   Template.splash.helpers({
     gameOver () {
-      return !countdown.get();
+      return !countdown.get() || Session.get('currentBomb', 'game-over');
     },
     goodGame () {
       return Session.get('currentBomb') > beacons.length;
@@ -106,7 +108,6 @@ if (Meteor.isClient) {
         console.log('fail');
         // remove time but still get to the next bomb
         countdown.remove(300);
-        Session.set('currentBomb', Session.get('currentBomb') + 1);
       }
     }
   });
