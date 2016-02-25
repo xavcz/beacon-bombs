@@ -1,3 +1,4 @@
+/*
 // This section sets up some basic app metadata,
 // the entire section is optional.
 App.info({
@@ -31,3 +32,4 @@ App.configurePlugin('com.phonegap.plugins.facebookconnect', {
   APP_ID: '1234567890',
   API_KEY: 'supersecretapikey'
 });
+	*/

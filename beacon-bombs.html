@@ -1,10 +1,13 @@
 <head>
   <title>Beacon Bombs</title>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  {{> layout}}
+	<div class="container-fluid">
+		{{> layout}}
+	</div>
 </body>
 
 <template name="layout">
@@ -25,16 +28,31 @@
 </template>
 
 <template name="splash">
-  {{#if goodGame}}
-    Yo! You win!
-  {{/if}}
-  {{#if gameOver}}
-    {{> gameOver2}}
-  {{/if}}
-  {{#if (or goodGame gameOver)}}
-    Want to play again ?
-  {{/if}}
-  <button rel="ok">Ok, let's go!</button>
+	<div  class="centerText">
+		<div class="row">
+			<div class="col-xs-12">
+				{{#if goodGame}}
+					Yo! You win!
+				{{/if}}
+				{{#if gameOver}}
+					<p class="font animated flash infinite"><strong>Game over!</strong></p> <br/>
+					You blew us all to smithereens, great job you nitwit.
+				{{/if}}
+			</div>
+		</div>
+	    <div class="row">
+		    <div class="col-xs-12">
+			    {{#if (or goodGame gameOver)}}
+				    Want to play again ?
+			    {{/if}}
+		    </div>
+	    </div>
+	    <div class="row">
+		    <div class="col-xs-12">
+			    <button class="btn btn-big btn-danger" rel="ok">Ok, let's go!</button>
+		    </div>
+	    </div>
+	</div>
 </template>
 
 <template name="bomb">
@@ -42,10 +60,18 @@
     <h2>Bomb n°{{_id}} - {{identifier}}</h2>
     {{> radar}}
     <div>
-      <form>
-        <input type="text" rel="code" placeholder="Bomb code" />
-        <button rel="submit-code">Diffuse</button>
-      </form>
+	    <div class="row">
+		    <form class="centerText">
+			    <div class="row">
+				    <input class="centerText" type="text" rel="code" placeholder="KILLCODE" style="width: 50%"/>
+			    </div>
+			   <div class="row">
+				   <button class="btn btn-big" rel="submit-code">Diffuse</button>
+			   </div>
+		    </form>
+	    </div>
+
+
       <p><strong>Hint:</strong> {{hint}}</p>
     </div>
   </div>

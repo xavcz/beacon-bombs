@@ -21,3 +21,5 @@ flyandi:reactive-countdown
 materialize:materialize
 percolate:momentum
 reactive-var
+twbs:bootstrap
+natestrauser:animate-css
