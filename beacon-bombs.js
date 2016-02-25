@@ -30,6 +30,40 @@ if (Meteor.isClient) {
     }
   ];
 
+  Meteor.startup(function () {
+    sAlert.config({
+      effect: 'genie',
+      position: 'top',
+      timeout: 3000,
+      html: false,
+      onRouteClose: true,
+      stack: {
+        spacing: 10, // in px
+        limit: 3 // when fourth alert appears all previous ones are cleared
+      },
+      offset: 0, // in px - will be added to first alert (bottom or top - depends of the position in config)
+      beep: false,
+      // examples:
+      // beep: '/beep.mp3'  // or you can pass an object:
+      // beep: {
+      //     info: '/beep-info.mp3',
+      //     error: '/beep-error.mp3',
+      //     success: '/beep-success.mp3',
+      //     warning: '/beep-warning.mp3'
+      // }
+      onClose: _.noop //
+      // examples:
+      // onClose: function() {
+      //     /* Code here will be executed once the alert closes. */
+      // }
+    });
+  });
+  Feedback.profiles = {
+    'wrong': {
+      vibrate: [500,50,500,50,100]
+    }
+  };
+
   let countdown = new ReactiveCountdown(600);
 
   Template.registerHelper('or', (a, b) => {
@@ -44,7 +78,7 @@ if (Meteor.isClient) {
   Template.layout.helpers({
     gameRunning () {
       const currentBomb = Session.get('currentBomb');
-      return currentBomb > 0 && currentBomb <= beacons.length;
+      return currentBomb > 0 && currentBomb <= beacons.length && currentBomb !== 'game-over';
     },
     bombData () {
       return beacons[Session.get('currentBomb') - 1];
@@ -95,16 +129,18 @@ if (Meteor.isClient) {
       // compare the input 'code' to the data context (ie. the current bomb)
       if (event.target[0].value === instance.data.code) {
         console.log('success, next bomb');
+        sAlert.success('Success ! 🎉');
         // add time and get to the next bomb
         countdown.add(300);
         $('.bomb').velocity('fadeOut');
         Meteor.setTimeout(() => {
+          event.target[0].value = '';
           Session.set('currentBomb', Session.get('currentBomb') + 1);
         }, 500);
       } else {
         console.log('fail');
-        // remove time but still get to the next bomb
-        countdown.remove(300);
+        countdown.remove(60);
+        sAlert.error('Wrong code ! Beware, you have lost time 💣');
       }
     }
   });

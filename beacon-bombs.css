@@ -16,6 +16,7 @@ p {
 .radar{
 	margin: auto;
     display: block;
+    font-size: 200px;
 }
 
 footer {
